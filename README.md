@@ -33,7 +33,8 @@ After you init object you can use with code
 
 ## Example Fetch Data
 
-`->fetch_all()`
+```
+> **$result->fetch_all()**
 Array
 (
     [0] => Array
@@ -43,7 +44,7 @@ Array
         )
 
 )
-
+```
 `->fetch_assoc()`
 ```
 Array
