@@ -1,6 +1,6 @@
 <?php
     /**
-     * PHP Mysql Base Function (2021-03-22)
+     * PHP Mysql Base Function (2021-06-27)
      * Github: https://github.com/awanz/php-mysqli-base
      * By: Awan
      */
@@ -22,12 +22,17 @@
         }
 
         public function query($query) {
+            /*
+                YOUR QUERY
+            */
             $result = $this->connection->query($query);
-            
             return $result;
         }
 
         public function getAll($tableName) {
+            /*
+                SELECT * FROM $tableName
+            */
             $query = "SELECT * FROM " . $tableName;
             $result = $this->connection->query($query);
             
@@ -35,6 +40,10 @@
         }
         
         public function getBy($tableName, $keyWhere, $valueWhere) {
+            /*
+                SELECT * FROM $tableName
+                WHERE $arrayWhere = $valueWhere
+            */
             $query = "SELECT * FROM " . $tableName . " WHERE " . $keyWhere . " = " . $valueWhere;
             $result = $this->connection->query($query);
             
@@ -42,6 +51,10 @@
         }
         
         public function getByArray($tableName, $arrayWhere) {
+            /*
+                SELECT * FROM $tableName
+                WHERE $arrayWhere
+            */
             $where = null;
             foreach ($arrayWhere as $key => $value) {
                 $where .= $key . " = '" . $value . "'";
@@ -57,6 +70,10 @@
         }
         
         public function getLike($tableName, $keyWhere, $valueWhere) {
+            /*
+                SELECT * FROM $tableName
+                WHERE $keyWhere $valueWhere
+            */
             $query = "SELECT * FROM " . $tableName . " WHERE " . $keyWhere . " LIKE " . $valueWhere;
             $result = $this->connection->query($query);
 
@@ -112,8 +129,8 @@
 
         public function delete($tableName, $keyWhere, $valueWhere) {
             /*
-                DELETE FROM table_name
-                WHERE condition;
+                DELETE FROM $tableName
+                WHERE $keyWhere = $valueWhere;
             */
             $query = "DELETE FROM " . $tableName . " WHERE " . $keyWhere . " = " . $valueWhere;
             $queryact = $this->connection->query($query);
@@ -130,9 +147,9 @@
 
         public function update($tableName, $dataArray, $keyWhere, $valueWhere) {
             /*
-                UPDATE table_name
-                SET column1 = value1, column2 = value2, ...
-                WHERE condition;
+                UPDATE $tableName
+                SET $dataArray
+                WHERE $keyWhere = $valueWhere;
             */
             $set = null;
             $arrayKeys = array_keys($dataArray);
